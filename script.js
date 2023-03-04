@@ -13,20 +13,29 @@ function changeff(callback, ms) {
   setTimeout(callback, ms)
 }
 
-   function result(result) { // this is for thescoring system.
-     var counter = 0
-    var count = 0
-     if (result === 'heads') {
-    counter = heads
-    headsCount++
-      count = headsCount
-  } else {
-       counter = tails
-    tailsCount++
-    count = tailsCount
+function result(result) { 
+  var counter = 0
+  var count = 0
+  var counts = {
+    heads: headsCount, tails: tailsCount
   }
-      counter.innerText = count
+  
+       for (var side in counts) {
+    if (result === side) {
+      if (side === 'heads') {
+        counter = heads
+      } else {
+        counter = tails
+      }
+      counts[side]++
+      count = counts[side]
+      break
+    }
   }
+  
+  counter.innerText = count
+}
+
 
 
   function flipCoin() { // this is for the flipping the coin randomly.
